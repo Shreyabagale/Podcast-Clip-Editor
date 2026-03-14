@@ -25,6 +25,10 @@ const clipSchema = new mongoose.Schema({
         type: String
     },
 
+    userId: {
+        type: String
+    },
+
     createdAt: {
         type: Date,
         default: Date.now

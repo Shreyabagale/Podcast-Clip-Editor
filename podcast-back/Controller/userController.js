@@ -42,33 +42,28 @@ const registerUser = async (req,res)=>{
 
 const loginUser = async (req,res)=>{
 
-    try{
+try{
 
-        const {email,password} = req.body
+const {email,password} = req.body
 
-        const user = await User.findOne({email})
+const user = await User.findOne({email,password})
 
-        if(!user){
+if(!user){
+return res.status(400).send("Invalid credentials")
+}
 
-            return res.send("User not found")
+res.json({
+message:"Login successful",
+userId:user._id
+})
 
-        }
+}
 
-        if(user.password !== password){
+catch(error){
 
-            return res.send("Incorrect password")
+res.send("Login failed")
 
-        }
-
-        res.send("Login successful")
-
-    }
-
-    catch(error){
-
-        res.send("Login error")
-
-    }
+}
 
 }
 

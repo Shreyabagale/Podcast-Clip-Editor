@@ -6,25 +6,34 @@ function PodcastList(){
 
 const [podcasts,setPodcasts] = useState([])
 
-const fetchPodcasts = async ()=>{
-
 const userId = localStorage.getItem("userId")
 
-let url = "http://localhost:5000/podcast/all"
+const fetchPodcasts = async ()=>{
 
-if(userId){
-url = `http://localhost:5000/podcast/all?userId=${userId}`
-}
+try{
 
-const res = await axios.get(url)
-
+const res = await axios.get(`http://localhost:5000/podcast/all/${userId}`)
 setPodcasts(res.data)
 
 }
 
+catch(error){
+console.log("Error fetching podcasts",error)
+}
+
+}
+
 useEffect(()=>{
+
+if(userId){
 fetchPodcasts()
+}
+
 },[])
+
+if(!userId){
+return <h2>Please login first to see your podcasts</h2>
+}
 
 return(
 
@@ -32,13 +41,17 @@ return(
 
 <h2>Podcasts</h2>
 
-{podcasts.map((p)=>(
+{podcasts.length === 0 ? (
+<p>No podcasts available</p>
+) : (
+podcasts.map((p)=>(
 <PodcastCard
 key={p._id}
 podcast={p}
 refresh={fetchPodcasts}
 />
-))}
+))
+)}
 
 </div>
 

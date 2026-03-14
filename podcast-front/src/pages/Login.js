@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
-
 import { useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 
 function Login(){
-    const navigate = useNavigate();
+
+const navigate = useNavigate();
 
 const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
+
+const userId = localStorage.getItem("userId")
 
 const handleLogin = async () => {
 
@@ -22,24 +24,58 @@ password
 }
 )
 
-alert(res.data)
+// store userId
+localStorage.setItem("userId", res.data.userId)
 
-if(res.data === "Login successful"){
-    navigate("/dashboard")
+alert(res.data.message)
+
+if(res.data.message === "Login successful"){
+navigate("/dashboard")
 }
 
 }
 catch(error){
 
-alert("Login error")
+alert("Login failed")
 
 }
+
+}
+
+const logout = () => {
+
+localStorage.removeItem("userId")
+
+alert("Logged out successfully")
+
+navigate("/login")
 
 }
 
 return(
 
 <div className="auth">
+
+{/* If user already logged in */}
+{userId ? (
+
+<div>
+
+<h2>Profile</h2>
+
+<p><b>User ID:</b> {userId.slice(0,8)}...</p>
+
+<p>Status: Logged In</p>
+
+<button onClick={logout}>
+Logout
+</button>
+
+</div>
+
+) : (
+
+<div>
 
 <h2>Login</h2>
 
@@ -65,6 +101,10 @@ Login
 Don't have an account?
 <Link to="/register"> Register</Link>
 </p>
+
+</div>
+
+)}
 
 </div>
 

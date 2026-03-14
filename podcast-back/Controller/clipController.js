@@ -5,14 +5,15 @@ const createClip = async (req,res)=>{
 
     try{
 
-        const {podcastId,startTime,endTime,caption,category} = req.body
+        const {podcastId,startTime,endTime,caption,category,userId} = req.body
 
         const newClip = new Clip({
             podcastId,
             startTime,
             endTime,
             caption,
-            category
+            category,
+            userId
         })
 
         await newClip.save()
@@ -34,8 +35,9 @@ const createClip = async (req,res)=>{
 const getClips = async (req,res)=>{
 
     try{
+        const userId = req.params.userId
 
-        const clips = await Clip.find().populate("podcastId")
+        const clips = await Clip.find({userId}).populate("podcastId")
 
         res.json(clips)
 

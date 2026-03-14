@@ -17,7 +17,9 @@ const podcastSchema = new mongoose.Schema({
     fileUrl: {
         type: String
     },
-
+    userId: {
+        type:String
+    },
     createdAt: {
         type: Date,
         default: Date.now

@@ -12,7 +12,7 @@ deleteClip
 
 router.post("/create",createClip)
 
-router.get("/all",getClips)
+router.get("/all/:userId",getClips)
 
 router.put("/update/:id",updateClip)
 

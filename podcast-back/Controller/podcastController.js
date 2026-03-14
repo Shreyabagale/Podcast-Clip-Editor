@@ -5,13 +5,14 @@ const createPodcast = async (req,res)=>{
 
 try{
 
-const {title,description,category,fileUrl} = req.body
+const {title,description,category,fileUrl,userId} = req.body
 
 const newPodcast = new Podcast({
 title,
 description,
 category,
-fileUrl
+fileUrl,
+userId
 })
 
 await newPodcast.save()
@@ -34,7 +35,9 @@ const getPodcasts = async (req,res)=>{
 
 try{
 
-const podcasts = await Podcast.find()
+const userId = req.params.userId
+
+const podcasts = await Podcast.find({userId})
 
 res.json(podcasts)
 

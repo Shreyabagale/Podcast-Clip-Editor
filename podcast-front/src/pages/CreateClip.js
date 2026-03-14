@@ -27,6 +27,7 @@ try{
 const startSeconds = convertToSeconds(startTime)
 const endSeconds = convertToSeconds(endTime)
 
+const userId = localStorage.getItem("userId")
 const res = await axios.post(
 "http://localhost:5000/clip/create",
 {
@@ -35,7 +36,8 @@ title,
 startTime: startSeconds,
 endTime: endSeconds,
 caption,
-category
+category,
+userId
 }
 )
 

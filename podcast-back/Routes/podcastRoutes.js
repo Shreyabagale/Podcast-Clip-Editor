@@ -11,7 +11,7 @@ deletePodcast
 
 router.post("/add",createPodcast)
 
-router.get("/all",getPodcasts)
+router.get("/all/:userId",getPodcasts)
 
 router.put("/update/:id",updatePodcast)
 

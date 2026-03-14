@@ -6,17 +6,34 @@ function ClipList(){
 
 const [clips,setClips] = useState([])
 
+const userId = localStorage.getItem("userId")
+
 const fetchClips = async ()=>{
 
-const res = await axios.get("http://localhost:5000/clip/all")
+try{
 
+const res = await axios.get(`http://localhost:5000/clip/all/${userId}`)
 setClips(res.data)
 
 }
 
+catch(error){
+console.log("Error fetching clips",error)
+}
+
+}
+
 useEffect(()=>{
+
+if(userId){
 fetchClips()
+}
+
 },[])
+
+if(!userId){
+return <h2>Please login first to see your clips</h2>
+}
 
 return(
 
