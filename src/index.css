@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base page styling */
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-blush-50 text-brand-900 antialiased;
+}
+
+.dark body {
+  @apply bg-brand-900 text-blush-50;
+}
+
+/* Utility helpers */
+.text-muted {
+  @apply text-brand-500 dark:text-blush-200;
+}
