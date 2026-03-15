@@ -8,6 +8,62 @@ const getYouTubeId = (url) => {
 };
 
 function ClipCard({ clip, refresh }) {
+const downloadClip = () => {
+
+if(!clip.fileUrl){
+alert("Video URL missing for this clip")
+return
+}
+
+const clipLink = `${clip.fileUrl}?t=${clip.startTime}`
+
+const element = document.createElement("a")
+
+const file = new Blob([clipLink], {type:"text/plain"})
+
+element.href = URL.createObjectURL(file)
+
+element.download = "clip_link.txt"
+
+document.body.appendChild(element)
+
+element.click()
+
+document.body.removeChild(element)
+
+}
+
+const shareClip = async () => {
+
+if(!clip.fileUrl){
+alert("Video URL missing for this clip")
+return
+}
+
+const clipLink = `${clip.fileUrl}?t=${clip.startTime}`
+
+try{
+
+if(navigator.share){
+
+await navigator.share({
+title:"Podcast Clip",
+text:"Check out this podcast clip!",
+url:clipLink
+})
+
+}else{
+
+navigator.clipboard.writeText(clipLink)
+alert("Clip link copied!")
+
+}
+
+}catch(err){
+console.log(err)
+}
+
+}
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
     title: clip.title,
@@ -82,6 +138,15 @@ function ClipCard({ clip, refresh }) {
           <br /><br />
           <button onClick={() => setEditing(true)}>Edit</button>
           <button onClick={deleteClip} style={{ marginLeft: "10px" }}>Delete</button>
+          <br/><br/>
+
+<button onClick={downloadClip}>
+Download
+</button>
+
+<button onClick={shareClip} style={{marginLeft:"10px"}}>
+Share
+</button>
         </>
       )}
     </div>

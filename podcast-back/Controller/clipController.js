@@ -5,7 +5,7 @@ const createClip = async (req,res)=>{
 
     try{
 
-        const {podcastId,startTime,endTime,caption,category,userId} = req.body
+        const {podcastId,startTime,endTime,caption,category,userId,fileUrl} = req.body
 
         const newClip = new Clip({
             podcastId,
@@ -13,7 +13,8 @@ const createClip = async (req,res)=>{
             endTime,
             caption,
             category,
-            userId
+            userId,
+            fileUrl
         })
 
         await newClip.save()

@@ -29,6 +29,9 @@ const clipSchema = new mongoose.Schema({
         type: String
     },
 
+    fileUrl:{
+        type:String
+    },
     createdAt: {
         type: Date,
         default: Date.now

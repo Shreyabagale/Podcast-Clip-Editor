@@ -24,6 +24,12 @@ return(
 
 <br/><br/>
 
+<a href="/viral">
+<button>Generate Viral Reels</button>
+</a>
+
+<br></br>
+
 <Link to="/createclip">
 <button>Create Clip</button>
 </Link>

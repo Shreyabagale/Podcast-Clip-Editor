@@ -24,10 +24,7 @@ console.log("Error fetching clips",error)
 }
 
 useEffect(()=>{
-
-if(userId){
 fetchClips()
-}
 
 },[])
 

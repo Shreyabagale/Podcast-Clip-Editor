@@ -9,6 +9,8 @@ import CreateClip from "./pages/CreateClip";
 import ClipList from "./pages/ClipList";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ViralReels from "./pages/ViralReels"
+
 
 import "./styles/style.css";
 
@@ -35,6 +37,8 @@ function App() {
         <Route path="/createclip" element={<CreateClip />} />
 
         <Route path="/clips" element={<ClipList />} />
+
+        <Route path="/viral" element={<ViralReels/>}/>
 
       </Routes>
 
