@@ -37,20 +37,22 @@ return <h2>Please login first to see your podcasts</h2>
 
 return(
 
-<div>
+<div className="page">
 
 <h2>Podcasts</h2>
 
 {podcasts.length === 0 ? (
 <p>No podcasts available</p>
 ) : (
-podcasts.map((p)=>(
+<div className="card-container">
+{podcasts.map((p)=>(
 <PodcastCard
 key={p._id}
 podcast={p}
 refresh={fetchPodcasts}
 />
-))
+))}
+</div>
 )}
 
 </div>

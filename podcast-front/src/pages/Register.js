@@ -49,18 +49,21 @@ return(
 type="text"
 placeholder="Name"
 onChange={(e)=>setName(e.target.value)}
+className="form-input"
 />
 
 <input
 type="email"
 placeholder="Email"
 onChange={(e)=>setEmail(e.target.value)}
+className="form-input"
 />
 
 <input
 type="password"
 placeholder="Password"
 onChange={(e)=>setPassword(e.target.value)}
+className="form-input"
 />
 
 <button className="main-btn">

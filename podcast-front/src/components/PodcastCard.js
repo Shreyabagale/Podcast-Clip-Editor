@@ -38,26 +38,29 @@ function PodcastCard({ podcast, refresh }) {
   const youtubeId = getYouTubeId(podcast.fileUrl);
 
   return (
-    <div style={{ border: "1px solid gray", padding: "15px", margin: "10px" }}>
+    <div className="card card--wide">
       {editing ? (
-        <div>
-          <input name="title" value={formData.title} onChange={handleChange} />
-          <input name="description" value={formData.description} onChange={handleChange} />
-          <input name="category" value={formData.category} onChange={handleChange} />
-          <button onClick={updatePodcast}>Save</button>
+        <div className="card-edit">
+          <input className="form-input" name="title" value={formData.title} onChange={handleChange} />
+          <input className="form-input" name="description" value={formData.description} onChange={handleChange} />
+          <input className="form-input" name="category" value={formData.category} onChange={handleChange} />
+          <div className="card-buttons">
+            <button className="main-btn" onClick={updatePodcast}>Save</button>
+          </div>
         </div>
       ) : (
-        <div>
-          <h3>{podcast.title}</h3>
-          <p>{podcast.description}</p>
-          <p>{podcast.category}</p>
-          <p><b>ID:</b> {podcast._id}</p>
+        <div className="card-body">
+          <div className="card-top">
+            <h3 className="card-title">{podcast.title}</h3>
+            <span className="tag">{podcast.category}</span>
+          </div>
+          <p className="card-text">{podcast.description}</p>
+          <p className="card-meta"><b>ID:</b> {podcast._id}</p>
 
           {/* YouTube video iframe */}
           {youtubeId && (
             <iframe
-              width="400"
-              height="225"
+              className="card-video"
               src={`https://www.youtube.com/embed/${youtubeId}`}
               title={podcast.title}
               frameBorder="0"
@@ -66,11 +69,12 @@ function PodcastCard({ podcast, refresh }) {
             ></iframe>
           )}
 
-          <button onClick={() => setEditing(true)}>Edit</button>
+          <div className="card-buttons">
+            <button className="btn" onClick={() => setEditing(true)}>Edit</button>
+            <button className="btn btn-danger" onClick={deletePodcast}>Delete</button>
+          </div>
         </div>
       )}
-
-      <button onClick={deletePodcast}>Delete</button>
     </div>
   );
 }

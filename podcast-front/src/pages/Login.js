@@ -84,6 +84,7 @@ type="email"
 placeholder="Email"
 value={email}
 onChange={(e)=>setEmail(e.target.value)}
+className="form-input"
 />
 
 <input
@@ -91,6 +92,7 @@ type="password"
 placeholder="Password"
 value={password}
 onChange={(e)=>setPassword(e.target.value)}
+className="form-input"
 />
 
 <button className="main-btn" onClick={handleLogin}>

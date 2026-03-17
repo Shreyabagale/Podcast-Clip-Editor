@@ -34,20 +34,22 @@ return <h2>Please login first to see your clips</h2>
 
 return(
 
-<div>
+<div className="page">
 
 <h2>Clips</h2>
 
 {clips.length === 0 ? (
 <p>No clips available</p>
 ) : (
-clips.map((clip)=>(
+<div className="card-container">
+{clips.map((clip)=>(
 <ClipCard
 key={clip._id}
 clip={clip}
 refresh={fetchClips}
 />
-))
+))}
+</div>
 )}
 
 </div>

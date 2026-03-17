@@ -98,36 +98,35 @@ console.log(err)
   if (!isYouTube) return null; // Skip non-YouTube clips
 
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        padding: "15px",
-        margin: "10px",
-        borderRadius: "10px",
-      }}
-    >
+    <div className="card card--wide">
       {editing ? (
-        <div>
-          <input name="title" value={formData.title} onChange={handleChange} placeholder="Title" />
-          <input name="category" value={formData.category} onChange={handleChange} placeholder="Category" />
-          <input name="caption" value={formData.caption} onChange={handleChange} placeholder="Caption" />
-          <input name="startTime" type="number" value={formData.startTime} onChange={handleChange} placeholder="Start Time (s)" />
-          <input name="endTime" type="number" value={formData.endTime} onChange={handleChange} placeholder="End Time (s)" />
-          <button onClick={updateClip}>Save</button>
-          <button onClick={() => setEditing(false)}>Cancel</button>
+        <div className="card-edit">
+          <input className="form-input" name="title" value={formData.title} onChange={handleChange} placeholder="Title" />
+          <input className="form-input" name="category" value={formData.category} onChange={handleChange} placeholder="Category" />
+          <input className="form-input" name="caption" value={formData.caption} onChange={handleChange} placeholder="Caption" />
+          <div className="clip-timeRow">
+            <input className="form-input" name="startTime" type="number" value={formData.startTime} onChange={handleChange} placeholder="Start Time (s)" />
+            <input className="form-input" name="endTime" type="number" value={formData.endTime} onChange={handleChange} placeholder="End Time (s)" />
+          </div>
+          <div className="card-buttons">
+            <button className="main-btn" onClick={updateClip}>Save</button>
+            <button className="btn" onClick={() => setEditing(false)}>Cancel</button>
+          </div>
         </div>
       ) : (
         <>
-          <h3>{clip.title}</h3>
-          <p><b>Podcast:</b> {clip.podcastId?.title || "N/A"}</p>
-          <p><b>Category:</b> {clip.category}</p>
-          <p><b>Caption:</b> {clip.caption}</p>
-          <p><b>Clip Time:</b> {clip.startTime}s → {clip.endTime}s</p>
+          <div className="card-body">
+            <div className="card-top">
+              <h3 className="card-title">{clip.title}</h3>
+              <span className="tag">{clip.category}</span>
+            </div>
+            <p className="card-meta"><b>Podcast:</b> {clip.podcastId?.title || "N/A"}</p>
+            <p className="card-text"><b>Caption:</b> {clip.caption}</p>
+            <p className="card-meta"><b>Clip Time:</b> {clip.startTime}s → {clip.endTime}s</p>
 
           {/* YouTube clip only */}
           <iframe
-  width="400"
-  height="225"
+  className="card-video"
   src={`https://www.youtube.com/embed/${youtubeId}?start=${clip.startTime}&end=${clip.endTime}&autoplay=0&controls=0`}
   title={clip.title}
   frameBorder="0"
@@ -135,18 +134,14 @@ console.log(err)
   allowFullScreen
 ></iframe>
 
-          <br /><br />
-          <button onClick={() => setEditing(true)}>Edit</button>
-          <button onClick={deleteClip} style={{ marginLeft: "10px" }}>Delete</button>
-          <br/><br/>
+          <div className="card-buttons">
+            <button className="btn" onClick={() => setEditing(true)}>Edit</button>
+            <button className="btn btn-danger" onClick={deleteClip}>Delete</button>
+            <button className="btn" onClick={downloadClip}>Download</button>
+            <button className="btn" onClick={shareClip}>Share</button>
+          </div>
+        </div>
 
-<button onClick={downloadClip}>
-Download
-</button>
-
-<button onClick={shareClip} style={{marginLeft:"10px"}}>
-Share
-</button>
         </>
       )}
     </div>

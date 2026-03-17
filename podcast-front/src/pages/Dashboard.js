@@ -4,7 +4,7 @@ function Dashboard(){
 
 return(
 
-<div>
+<div className="page">
 
 <h2>Dashboard</h2>
 
@@ -28,7 +28,7 @@ return(
 <button>Generate Viral Reels</button>
 </a>
 
-<br></br>
+<br></br><br></br>
 
 <Link to="/createclip">
 <button>Create Clip</button>

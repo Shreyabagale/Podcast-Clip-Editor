@@ -135,13 +135,14 @@ console.log(err)
 
 return(
 
-<div style={{marginTop:"30px"}}>
+<div className="page viral">
 
 <h2>Generate Viral Reels</h2>
 
 <select
 value={selectedPodcastId}
 onChange={(e)=>setSelectedPodcastId(e.target.value)}
+className="form-select"
 >
 
 <option value="">Select your podcast</option>
@@ -156,17 +157,13 @@ onChange={(e)=>setSelectedPodcastId(e.target.value)}
 
 <br/><br/>
 
-<button onClick={generateReels}>
+<button className="main-btn" onClick={generateReels}>
 Generate 5 Viral Reels
 </button>
 
 <br/><br/>
 
-<div style={{
-display:"grid",
-gridTemplateColumns:"repeat(auto-fill,250px)",
-gap:"20px"
-}}>
+<div className="viral-grid">
 
 {reels.map((reel,index)=>{
 
@@ -176,25 +173,21 @@ return(
 
 <div
 key={index}
-style={{
-border:"1px solid #ccc",
-padding:"15px",
-borderRadius:"10px"
-}}
+className="viral-card"
 >
 
 <h3>{reel.title}</h3>
 
 <p>
 Start: {reel.startTime}
-<button onClick={()=>adjustStart(index,-5)}> -5 </button>
-<button onClick={()=>adjustStart(index,5)}> +5 </button>
+<button className="btn btn-sm" onClick={()=>adjustStart(index,-5)}> -5 </button>
+<button className="btn btn-sm" onClick={()=>adjustStart(index,5)}> +5 </button>
 </p>
 
 <p>
 End: {reel.endTime}
-<button onClick={()=>adjustEnd(index,-5)}> -5 </button>
-<button onClick={()=>adjustEnd(index,5)}> +5 </button>
+<button className="btn btn-sm" onClick={()=>adjustEnd(index,-5)}> -5 </button>
+<button className="btn btn-sm" onClick={()=>adjustEnd(index,5)}> +5 </button>
 </p>
 
 <iframe
@@ -204,15 +197,12 @@ src={`https://www.youtube.com/embed/${videoId}?start=${reel.startTime}&end=${ree
 title="Clip Preview"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowFullScreen
-style={{
-borderRadius:"10px",
-objectFit:"cover"
-}}
+className="viral-iframe"
 />
 
 <br/><br/>
 
-<button onClick={()=>saveClip(reel)}>
+<button className="main-btn" onClick={()=>saveClip(reel)}>
 Save Clip
 </button>
 

@@ -37,7 +37,7 @@ alert("Error adding podcast")
 
 return(
 
-<div>
+<div className="page">
 
 <h2>Add Podcast</h2>
 
@@ -46,6 +46,7 @@ type="text"
 placeholder="Podcast Title"
 value={title}
 onChange={(e)=>setTitle(e.target.value)}
+className="form-input"
 />
 
 <br/><br/>
@@ -55,6 +56,7 @@ type="text"
 placeholder="Description"
 value={description}
 onChange={(e)=>setDescription(e.target.value)}
+className="form-input"
 />
 
 <br/><br/>
@@ -64,6 +66,7 @@ type="text"
 placeholder="Category"
 value={category}
 onChange={(e)=>setCategory(e.target.value)}
+className="form-input"
 />
 
 <br/><br/>
@@ -73,11 +76,12 @@ type="text"
 placeholder="Youtube URL"
 value={fileUrl}
 onChange={(e)=>setFileUrl(e.target.value)}
+className="form-input"
 />
 
 <br/><br/>
 
-<button onClick={handleAddPodcast}>
+<button className="main-btn" onClick={handleAddPodcast}>
 Add Podcast
 </button>
 
